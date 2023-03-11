@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PchatApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(PchatApplication.class, args);
     }
 
