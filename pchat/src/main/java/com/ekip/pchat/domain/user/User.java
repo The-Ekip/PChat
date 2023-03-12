@@ -1,9 +1,14 @@
 package com.ekip.pchat.domain.user;
 
+import com.ekip.pchat.domain.accountDetail.AccountDetail;
+import com.ekip.pchat.domain.message.Message;
+import com.ekip.pchat.domain.userroom.UserRoom;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -52,5 +57,17 @@ public class User {
     @Column (name="created_at")
     private LocalDateTime createdAt;
 
+    @JsonIgnore
+ //   @Column (name="user_room")
+    @ManyToOne
+    private UserRoom userRoom;
+
+  //  @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "account_detail_id", referencedColumnName = "account_detail_id")
+  //  private AccountDetail accountDetail;
+
+    @JsonIgnore
+    @OneToMany
+    private List<Message> message;
 
 }

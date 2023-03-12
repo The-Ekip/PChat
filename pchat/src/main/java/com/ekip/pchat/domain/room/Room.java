@@ -1,5 +1,8 @@
 package com.ekip.pchat.domain.room;
 
+import com.ekip.pchat.domain.message.Message;
+import com.ekip.pchat.domain.userroom.UserRoom;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,9 +22,6 @@ public class Room {
     @Column (name="created_at")
     private LocalDateTime createdAt;
 
-    @Column (name="user_id")
-    private List<Long> userId;
-
     @Column (name="max_capacity")
     private int maxCapacity;
 
@@ -31,4 +31,12 @@ public class Room {
     @Enumerated(EnumType.STRING)
     @Column (name="room_status")
     private RoomStatus roomStatus;
+
+    @JsonIgnore
+    @ManyToOne
+    private UserRoom userRoom;
+
+    @OneToMany
+    private List<Message> message;
+
 }

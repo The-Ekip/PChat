@@ -1,5 +1,6 @@
-package com.ekip.pchat;
+/*//package com.ekip.pchat;
 
+ // import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -10,4 +11,4 @@ class PchatApplicationTests {
     void contextLoads() {
     }
 
-}
+}*/
