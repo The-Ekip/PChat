@@ -1,8 +1,7 @@
 package com.ekip.pchat.domain.message;
 
 import com.ekip.pchat.domain.room.Room;
-import com.ekip.pchat.domain.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ekip.pchat.domain.user.AppUser;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,18 +24,18 @@ public class Message {
     @Column (name="content_type")
     private ContentType contentType;
 
+
     @Column(columnDefinition="TEXT")
     private String text;
 
-   // @Column (name="user_id")
-    @JoinColumn(name="user_id", nullable=false)
     @ManyToOne
-    private User user;
+    @JoinColumn(name="user_id", nullable = false)
+    private AppUser appUser;
 
-    @JsonIgnore
-    @JoinColumn(name="room_id", nullable=false)
- //   @Column (name="room_id")
     @ManyToOne
+    @JoinColumn(name="room_id", nullable = false)
     private Room room;
+
+
 
 }

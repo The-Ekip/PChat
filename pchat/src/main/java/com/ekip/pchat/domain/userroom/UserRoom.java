@@ -1,7 +1,8 @@
 package com.ekip.pchat.domain.userroom;
 
 import com.ekip.pchat.domain.room.Room;
-import com.ekip.pchat.domain.user.User;
+import com.ekip.pchat.domain.user.AppUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,13 +18,13 @@ public class UserRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userRoomId;
 
-  //  @JoinColumn(name="assigned_room_id", nullable=false)
-    @OneToMany
-  //  @Column (name="assigned_room_id")
+    @JsonIgnore
+    @OneToMany(mappedBy="userRoom", cascade = CascadeType.ALL)
     private List<Room> assignedRoom;
 
-    @OneToMany
-    // @JoinColumn(name="assigned_user_id", nullable=false)
-   // @Column (name="assigned_user_id")
-    private List<User> assignedUser;
+    @JsonIgnore
+    @OneToMany(mappedBy="userRoom", cascade = CascadeType.ALL)
+    private List<AppUser> assignedAppUser;
+
+
 }

@@ -1,6 +1,6 @@
 package com.ekip.pchat.domain.accountDetail;
 
-import com.ekip.pchat.domain.user.User;
+import com.ekip.pchat.domain.user.AppUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -34,6 +34,6 @@ public class AccountDetail {
 
     @JsonIgnore
     @OneToOne(mappedBy = "accountDetail")
-    private User user;
+    private AppUser appUser;
 
 }
