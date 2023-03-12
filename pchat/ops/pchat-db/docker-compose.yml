@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mysql-pchat:
+    image: mysql:8.0
+    restart: "no"
+    environment:
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'pchat'
+    ports:
+      - "3306:3306"
