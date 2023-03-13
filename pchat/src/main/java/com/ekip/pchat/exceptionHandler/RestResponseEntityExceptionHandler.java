@@ -23,7 +23,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(value= { EntityNotFountException.class, EntityNotFountException.class })
     protected ResponseEntity handleNotFoundConflict(
             RuntimeException ex, WebRequest request) {
-        return new ResponseEntity("entity not found",HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity(ex.getMessage()==null?"NOT FOUND":ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 
 }

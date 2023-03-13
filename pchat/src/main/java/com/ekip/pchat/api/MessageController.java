@@ -1,8 +1,6 @@
 package com.ekip.pchat.api;
 
 import com.ekip.pchat.domain.message.Message;
-import com.ekip.pchat.domain.room.Room;
-import com.ekip.pchat.domain.user.AppUser;
 import com.ekip.pchat.service.abstracts.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

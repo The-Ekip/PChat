@@ -41,4 +41,5 @@ public class Room {
             cascade = CascadeType.ALL)
     private List<Message> message;
 
+
 }
