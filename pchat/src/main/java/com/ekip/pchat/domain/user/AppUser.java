@@ -1,14 +1,19 @@
 package com.ekip.pchat.domain.user;
 
+import com.ekip.pchat.domain.accountDetail.AccountDetail;
+import com.ekip.pchat.domain.message.Message;
+import com.ekip.pchat.domain.userroom.UserRoom;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
-@Table (name="user")
-public class User {
+@Table (name="application_user")
+public class AppUser {
 
     @Id
     @Column (name="user_id")
@@ -35,8 +40,8 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column (name="rank")
-    private Rank rank;
+    @Column (name="userRank")
+    private Rank userRank;
 
     @Enumerated(EnumType.STRING)
     @Column (name="role")
@@ -52,5 +57,19 @@ public class User {
     @Column (name="created_at")
     private LocalDateTime createdAt;
 
+
+    @ManyToOne
+    @JoinColumn(name="user_room_id", nullable = false)
+    private UserRoom userRoom;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_detail_id", referencedColumnName = "account_detail_id")
+    private AccountDetail accountDetail;
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy= "appUser",
+            cascade = CascadeType.ALL)
+    private List<Message> message;
 
 }

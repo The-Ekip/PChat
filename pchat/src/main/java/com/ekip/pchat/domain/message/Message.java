@@ -1,5 +1,8 @@
 package com.ekip.pchat.domain.message;
 
+import com.ekip.pchat.domain.room.Room;
+import com.ekip.pchat.domain.user.AppUser;
+import com.ekip.pchat.exceptionHandler.exceptions.EntityNotFountException;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,7 +25,16 @@ public class Message {
     @Column (name="content_type")
     private ContentType contentType;
 
+
     @Column(columnDefinition="TEXT")
     private String text;
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private AppUser appUser;
+
+    @ManyToOne
+    @JoinColumn(name="room_id", nullable = false)
+    private Room room;
 
 }
