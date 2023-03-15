@@ -1,10 +1,12 @@
 package com.ekip.pchat.service.concrete;
 
 import com.ekip.pchat.dao.AppUserRepository;
+import com.ekip.pchat.domain.accountDetail.AccountDetail;
 import com.ekip.pchat.domain.user.AppUser;
 import com.ekip.pchat.domain.user.Rank;
 import com.ekip.pchat.domain.user.Role;
 import com.ekip.pchat.domain.user.UserStatus;
+import com.ekip.pchat.service.abstracts.AccaountDetailService;
 import com.ekip.pchat.service.abstracts.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.List;
 public class AppUserManager implements AppUserService {
 
     final private AppUserRepository appUserRepository;
+    final private AccaountDetailService accaountDetailService;
 
 
     @Override
@@ -40,6 +43,8 @@ public class AppUserManager implements AppUserService {
         appUser1.setPassword(null);
         appUser1.setPhone(appUser.getPhone());
         appUser1.setRole(Role.MEMBER);
+        AccountDetail add = accaountDetailService.add(new AccountDetail());
+        appUser1.setAccountDetail(add);
         return appUserRepository.save(appUser1);
     }
 
