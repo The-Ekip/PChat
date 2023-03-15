@@ -40,7 +40,7 @@ public class AppUser {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column (name="userRank")
+    @Column (name="user_rank")
     private Rank userRank;
 
     @Enumerated(EnumType.STRING)
@@ -59,11 +59,11 @@ public class AppUser {
 
 
     @ManyToOne
-    @JoinColumn(name="user_room_id", nullable = false)
+    @JoinColumn(name="user_room_id", nullable = true)
     private UserRoom userRoom;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_detail_id", referencedColumnName = "account_detail_id")
+    @JoinColumn(name = "account_detail_id", referencedColumnName = "account_detail_id", nullable = true)
     private AccountDetail accountDetail;
 
 

@@ -2,6 +2,7 @@ package com.ekip.pchat.api;
 
 import com.ekip.pchat.domain.message.Message;
 import com.ekip.pchat.service.abstracts.MessageService;
+import com.ekip.pchat.service.concrete.MessageManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,8 @@ public class MessageController {
     private final MessageService service;
 
     @GetMapping("/get")
-    public Message add(){
-        return  service.add(new Message());
+    public String add(){
+
+        return "sefa";
     }
 }
