@@ -27,9 +27,8 @@ public class AccountDetailManager implements AccaountDetailService {
         AccountDetail accountDetail1 = new AccountDetail();
         accountDetail1.setAccountStatus(AccountStatus.ACTIVE);
         accountDetail1.setAccountType(AccountType.STANDARD);
-        accountDetail1.setAccountStartDate(LocalDateTime.now());
-        accountDetail1.setAccountStartDate(null);
-        accountDetail1.setAccountTypeDeadline(null);
+        accountDetail1.setPremiumDeadline(null);
+        accountDetail1.setPremiumStartDate(null);
         return this.accaountDetailRepository.save(accountDetail1);
     }
 

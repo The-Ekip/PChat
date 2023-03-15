@@ -18,13 +18,14 @@ public class UserRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userRoomId;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="userRoom", cascade = CascadeType.ALL)
-    private List<Room> assignedRoom;
+    @ManyToOne
+    @JoinColumn(name = "room_id", nullable = true)
+    private Room assignedRoom;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="userRoom", cascade = CascadeType.ALL)
-    private List<AppUser> assignedAppUser;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private AppUser assignedAppUser;
 
 
 }

@@ -58,9 +58,10 @@ public class AppUser {
     private LocalDateTime createdAt;
 
 
-    @ManyToOne
-    @JoinColumn(name="user_room_id", nullable = true)
-    private UserRoom userRoom;
+    @JsonIgnore
+    @OneToMany(mappedBy= "assignedAppUser",
+            cascade = CascadeType.ALL)
+    private List<UserRoom> userRoom;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_detail_id", referencedColumnName = "account_detail_id", nullable = true)

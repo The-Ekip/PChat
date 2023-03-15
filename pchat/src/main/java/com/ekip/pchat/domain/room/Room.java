@@ -32,9 +32,10 @@ public class Room {
     @Column (name="room_status")
     private RoomStatus roomStatus;
 
-    @ManyToOne
-    @JoinColumn(name="user_room_id",nullable = false)
-    private UserRoom userRoom;
+    @JsonIgnore
+    @OneToMany(mappedBy="assignedRoom",
+            cascade = CascadeType.ALL)
+    private List<UserRoom> userRoom;
 
     @JsonIgnore
     @OneToMany(mappedBy="room",

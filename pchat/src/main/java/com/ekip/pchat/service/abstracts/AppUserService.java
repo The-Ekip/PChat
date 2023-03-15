@@ -1,5 +1,6 @@
 package com.ekip.pchat.service.abstracts;
 
+import com.ekip.pchat.api.dto.AppUserAddRequest;
 import com.ekip.pchat.dao.AppUserRepository;
 import com.ekip.pchat.domain.user.AppUser;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,6 @@ import java.util.List;
 public interface AppUserService {
 
    List<AppUser> getAll();
-    AppUser add(AppUser appUser);
+    AppUser add(AppUserAddRequest appUserAddRequest);
     AppUser getById(Long userId);
 }

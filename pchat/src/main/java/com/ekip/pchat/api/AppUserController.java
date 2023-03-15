@@ -1,5 +1,6 @@
 package com.ekip.pchat.api;
 
+import com.ekip.pchat.api.dto.AppUserAddRequest;
 import com.ekip.pchat.api.httpResponse.SuccessDataResponse;
 import com.ekip.pchat.domain.user.AppUser;
 import com.ekip.pchat.service.abstracts.AppUserService;
@@ -23,8 +24,8 @@ public class AppUserController {
     }
 
     @PostMapping
-    public ResponseEntity add(@RequestBody AppUser addRequest){
-        return new ResponseEntity(new SuccessDataResponse("user created",this.service.add(addRequest)),HttpStatus.CREATED);
+    public ResponseEntity add(@RequestBody AppUserAddRequest appUserAddRequest){
+        return new ResponseEntity(new SuccessDataResponse("user created",this.service.add(appUserAddRequest)),HttpStatus.CREATED);
     }
 
 }

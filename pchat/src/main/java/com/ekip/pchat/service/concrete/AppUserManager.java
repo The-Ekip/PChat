@@ -1,5 +1,6 @@
 package com.ekip.pchat.service.concrete;
 
+import com.ekip.pchat.api.dto.AppUserAddRequest;
 import com.ekip.pchat.dao.AppUserRepository;
 import com.ekip.pchat.domain.accountDetail.AccountDetail;
 import com.ekip.pchat.domain.user.AppUser;
@@ -28,24 +29,15 @@ public class AppUserManager implements AppUserService {
     }
 
     @Override
-    public AppUser add(AppUser appUser) {
-        AppUser appUser1 = new AppUser();
-        appUser1.setCreatedAt(LocalDateTime.now());
-        appUser1.setUserRank(Rank.BRONZE);
-        appUser1.setUserStatus(UserStatus.IDLE);
-        appUser1.setUserRoom(null);
-        appUser1.setGender(appUser.getGender());
-        appUser1.setFirstName(appUser.getFirstName());
-        appUser1.setLastName(appUser.getLastName());
-        appUser1.setMail(appUser.getMail());
-        appUser1.setMessage(null);
-        appUser1.setNickName(appUser.getNickName());
-        appUser1.setPassword(null);
-        appUser1.setPhone(appUser.getPhone());
-        appUser1.setRole(Role.MEMBER);
+    public AppUser add(AppUserAddRequest appUserAddRequest) {
+        AppUser appUser = AppUserAddRequest.appUserFromDto(appUserAddRequest);
+        appUser.setCreatedAt(LocalDateTime.now());
+        appUser.setUserRank(Rank.BRONZE);
+        appUser.setUserStatus(UserStatus.IDLE);
+        appUser.setRole(Role.MEMBER);
         AccountDetail add = accaountDetailService.add(new AccountDetail());
-        appUser1.setAccountDetail(add);
-        return appUserRepository.save(appUser1);
+        appUser.setAccountDetail(add);
+        return appUserRepository.save(appUser);
     }
 
     @Override

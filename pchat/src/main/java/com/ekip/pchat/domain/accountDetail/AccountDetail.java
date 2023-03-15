@@ -19,10 +19,10 @@ public class AccountDetail {
     private long accountDetailId;
 
     @Column(name="account_type_deadline")
-    private LocalDateTime accountTypeDeadline;
+    private LocalDateTime premiumDeadline;
 
     @Column (name="account_start_date")
-    private LocalDateTime accountStartDate;
+    private LocalDateTime premiumStartDate;
 
     @Enumerated(EnumType.STRING)
     @Column (name="account_status")
