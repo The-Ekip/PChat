@@ -1,8 +1,7 @@
 package com.ekip.pchat.api;
 
-import com.ekip.pchat.api.dto.AppUserAddRequest;
+import com.ekip.pchat.api.dto.userdto.AppUserAddRequest;
 import com.ekip.pchat.api.httpResponse.SuccessDataResponse;
-import com.ekip.pchat.domain.user.AppUser;
 import com.ekip.pchat.service.abstracts.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,6 +25,11 @@ public class AppUserController {
     @PostMapping
     public ResponseEntity add(@RequestBody AppUserAddRequest appUserAddRequest){
         return new ResponseEntity(new SuccessDataResponse("user created",this.service.add(appUserAddRequest)),HttpStatus.CREATED);
+    }
+
+    @GetMapping("{userId}")
+    public ResponseEntity getUserById(@PathVariable Long userId){
+        return new ResponseEntity(new SuccessDataResponse("user listed",this.service.getById(userId)),HttpStatus.OK);
     }
 
 }

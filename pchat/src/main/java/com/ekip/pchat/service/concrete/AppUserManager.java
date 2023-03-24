@@ -1,12 +1,13 @@
 package com.ekip.pchat.service.concrete;
 
-import com.ekip.pchat.api.dto.AppUserAddRequest;
+import com.ekip.pchat.api.dto.userdto.AppUserAddRequest;
 import com.ekip.pchat.dao.AppUserRepository;
 import com.ekip.pchat.domain.accountDetail.AccountDetail;
 import com.ekip.pchat.domain.user.AppUser;
 import com.ekip.pchat.domain.user.Rank;
 import com.ekip.pchat.domain.user.Role;
 import com.ekip.pchat.domain.user.UserStatus;
+import com.ekip.pchat.exceptionHandler.exceptions.EntityNotFountException;
 import com.ekip.pchat.service.abstracts.AccaountDetailService;
 import com.ekip.pchat.service.abstracts.AppUserService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,6 @@ public class AppUserManager implements AppUserService {
 
     @Override
     public AppUser getById(Long userId) {
-        return null;
+      return appUserRepository.findById(userId).orElseThrow(()->new EntityNotFountException("User not found with "+userId+" id. "));
     }
 }

@@ -1,12 +1,7 @@
-package com.ekip.pchat.api.dto;
+package com.ekip.pchat.api.dto.userdto;
 
 import com.ekip.pchat.domain.user.*;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 @Data
 public class AppUserAddRequest {
