@@ -32,8 +32,14 @@ public class AccountDetailManager implements AccaountDetailService {
         return this.accaountDetailRepository.save(accountDetail1);
     }
 
+
     @Override
     public AccountDetail getOneAccountDetailById() {
         return null;
+    }
+
+    @Override
+    public AccountDetail buyPremium(AccountDetail accountDetail) {
+        return accaountDetailRepository.save(accountDetail);
     }
 }

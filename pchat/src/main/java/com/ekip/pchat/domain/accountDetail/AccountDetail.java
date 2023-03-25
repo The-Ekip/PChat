@@ -28,6 +28,12 @@ public class AccountDetail {
     @Column (name="account_status")
     private AccountStatus accountStatus;
 
+    @Column (name="friends_limit")
+    private int friendsLimit;
+
+    @Column (name="session_limit")
+    private double sessionLimit;
+
     @Enumerated(EnumType.STRING)
     @Column (name="account_type")
     private AccountType accountType;

@@ -2,6 +2,7 @@ package com.ekip.pchat.domain.user;
 
 import com.ekip.pchat.domain.accountDetail.AccountDetail;
 import com.ekip.pchat.domain.message.Message;
+import com.ekip.pchat.domain.applicationtoken.ApplicationToken;
 import com.ekip.pchat.domain.userroom.UserRoom;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -64,8 +65,12 @@ public class AppUser {
     private List<UserRoom> userRoom;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_detail_id", referencedColumnName = "account_detail_id", nullable = true)
+    @JoinColumn(name = "account_detail_id", referencedColumnName = "account_detail_id", nullable = false)
     private AccountDetail accountDetail;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "application_token_id", referencedColumnName = "application_token_id", nullable = false)
+    private ApplicationToken applicationToken;
 
 
     @JsonIgnore
