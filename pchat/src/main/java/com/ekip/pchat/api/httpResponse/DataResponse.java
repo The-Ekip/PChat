@@ -1,5 +1,6 @@
 package com.ekip.pchat.api.httpResponse;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
