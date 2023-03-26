@@ -15,6 +15,7 @@ import com.ekip.pchat.exceptionHandler.exceptions.EntityNotFountException;
 import com.ekip.pchat.service.abstracts.AccountDetailService;
 import com.ekip.pchat.service.abstracts.AppUserService;
 import com.ekip.pchat.service.abstracts.ApplicationTokenService;
+import com.ekip.pchat.utilty.AccountUpdater;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -54,14 +55,20 @@ public class AppUserManager implements AppUserService {
         return appUserRepository.findById(userId).orElseThrow(() -> new EntityNotFountException("User not found with " + userId + " id. "));
     }
 
-
+//TODO PEREMIUM DEADLINE VE START DATE GUNCELLE.
     @Override
     public BuyPremiumResponse buyPremium(BuyPremiumRequest buyPremiumRequest, Long userId) {
         AppUser appUser = getById(userId);
         AccountDetail accountDetail1 = appUser.getAccountDetail();
-        accountDetail1.setPremiumStartDate(LocalDateTime.now());
         accountDetail1.setAccountType(AccountType.PREMIUM);
-        accountDetail1.setPremiumDeadline(buyPremiumRequest.getPremiumDeadline());
+        if (accountDetail1.getPremiumStartDate()==null){
+            accountDetail1.setPremiumStartDate(LocalDateTime.now());
+          //  accountDetail1.setPremiumDeadline(accountDetail1.getPremiumStartDate().plusMonths(buyPremiumRequest.getNumberofMounth()));
+            accountDetail1.setPremiumDeadline(accountDetail1.getPremiumStartDate().plusSeconds(20));
+            AccountUpdater accountUpdater = new AccountUpdater(accountDetail1,accountDetailService);
+        }else{
+            accountDetail1.setPremiumDeadline(accountDetail1.getPremiumDeadline().plusMonths(buyPremiumRequest.getNumberofMounth()));
+        }
         accountDetail1.setFriendsLimit(10);
         accountDetail1.setSessionLimit(120);
         int tokenQuatity = appUser.getApplicationToken().getTokenQuantity() - (buyPremiumRequest.getNumberofMounth() * 100);
@@ -94,9 +101,6 @@ public class AppUserManager implements AppUserService {
         applicationToken1.setTokenQuantity(applicationToken1.getTokenQuantity()+applicationTokenAmaount);
         return applicationtokenService.updateApplicationToken(applicationToken1);
     }
-
-
-
 
 
 }
