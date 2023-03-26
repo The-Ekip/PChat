@@ -14,11 +14,11 @@ public class AccountUpdater {
 
     private AccountDetail accountDetail;
     private ScheduledExecutorService scheduler;
-    private final AccountDetailService accaountDetailService;
+    private final AccountDetailService accountDetailService;
 
-    public AccountUpdater(AccountDetail accountDetail, AccountDetailService accaountDetailService) {
+    public AccountUpdater(AccountDetail accountDetail, AccountDetailService accountDetailService) {
         this.accountDetail = accountDetail;
-        this.accaountDetailService = accaountDetailService;
+        this.accountDetailService = accountDetailService;
 
 
         // Create a scheduler with a single thread
@@ -35,7 +35,7 @@ public class AccountUpdater {
             accountDetail.setAccountType(AccountType.STANDARD);
             accountDetail.setPremiumStartDate(null);
             System.out.println("CALISTI");
-            accaountDetailService.updateAccountType(accountDetail);
+            accountDetailService.updateAccountType(accountDetail);
             stop();
         }, delay.toMillis(), TimeUnit.MILLISECONDS);
     }
