@@ -10,4 +10,5 @@ public interface AccountDetailService {
     AccountDetail add(AccountDetail accountDetail);
     AccountDetail getOneAccountDetailById();
     AccountDetail buyPremium(AccountDetail accountDetail);
+    AccountDetail updateAccountType(AccountDetail accountDetail);
 }

@@ -42,4 +42,11 @@ public class AccountDetailManager implements AccountDetailService {
     public AccountDetail buyPremium(AccountDetail accountDetail) {
         return accountDetailRepository.save(accountDetail);
     }
+
+    @Override
+    public AccountDetail updateAccountType(AccountDetail accountDetail) {
+        return accountDetailRepository.save(accountDetail);
+    }
+
+
 }
