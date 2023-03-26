@@ -1,12 +1,8 @@
-package com.ekip.pchat.api.dto.accaountDetail;
+package com.ekip.pchat.api.dto.accountDetail;
 
 import com.ekip.pchat.api.dto.baseDtos.accountdetail.AccountDetailRequestDto;
 import com.ekip.pchat.domain.accountDetail.AccountDetail;
-import com.ekip.pchat.domain.accountDetail.AccountStatus;
-import com.ekip.pchat.domain.accountDetail.AccountType;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 
 @Data

@@ -1,10 +1,10 @@
 package com.ekip.pchat.service.concrete;
 
-import com.ekip.pchat.dao.AccaountDetailRepository;
+import com.ekip.pchat.dao.AccountDetailRepository;
 import com.ekip.pchat.domain.accountDetail.AccountDetail;
 import com.ekip.pchat.domain.accountDetail.AccountStatus;
 import com.ekip.pchat.domain.accountDetail.AccountType;
-import com.ekip.pchat.service.abstracts.AccaountDetailService;
+import com.ekip.pchat.service.abstracts.AccountDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class AccountDetailManager implements AccaountDetailService {
+public class AccountDetailManager implements AccountDetailService {
 
-    private final AccaountDetailRepository accaountDetailRepository;
+    private final AccountDetailRepository accountDetailRepository;
 
 
     @Override
@@ -29,7 +29,7 @@ public class AccountDetailManager implements AccaountDetailService {
         accountDetail1.setAccountType(AccountType.STANDARD);
         accountDetail1.setPremiumDeadline(null);
         accountDetail1.setPremiumStartDate(null);
-        return this.accaountDetailRepository.save(accountDetail1);
+        return this.accountDetailRepository.save(accountDetail1);
     }
 
 
@@ -40,6 +40,6 @@ public class AccountDetailManager implements AccaountDetailService {
 
     @Override
     public AccountDetail buyPremium(AccountDetail accountDetail) {
-        return accaountDetailRepository.save(accountDetail);
+        return accountDetailRepository.save(accountDetail);
     }
 }

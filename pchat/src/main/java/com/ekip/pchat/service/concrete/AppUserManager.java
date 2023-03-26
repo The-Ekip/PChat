@@ -1,6 +1,6 @@
 package com.ekip.pchat.service.concrete;
 
-import com.ekip.pchat.api.dto.accaountDetail.BuyPremiumResponse;
+import com.ekip.pchat.api.dto.accountDetail.BuyPremiumResponse;
 import com.ekip.pchat.api.dto.userdto.AppUserAddRequest;
 import com.ekip.pchat.api.dto.userdto.BuyPremiumRequest;
 import com.ekip.pchat.dao.AppUserRepository;
@@ -12,7 +12,7 @@ import com.ekip.pchat.domain.user.Rank;
 import com.ekip.pchat.domain.user.Role;
 import com.ekip.pchat.domain.user.UserStatus;
 import com.ekip.pchat.exceptionHandler.exceptions.EntityNotFountException;
-import com.ekip.pchat.service.abstracts.AccaountDetailService;
+import com.ekip.pchat.service.abstracts.AccountDetailService;
 import com.ekip.pchat.service.abstracts.AppUserService;
 import com.ekip.pchat.service.abstracts.ApplicationTokenService;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import java.util.List;
 public class AppUserManager implements AppUserService {
 
     final private AppUserRepository appUserRepository;
-    final private AccaountDetailService accaountDetailService;
+    final private AccountDetailService accountDetailService;
     final private ApplicationTokenService applicationtokenService;
 
 
@@ -42,7 +42,7 @@ public class AppUserManager implements AppUserService {
         appUser.setUserRank(Rank.BRONZE);
         appUser.setUserStatus(UserStatus.IDLE);
         appUser.setRole(Role.MEMBER);
-        AccountDetail add = accaountDetailService.add(new AccountDetail());
+        AccountDetail add = accountDetailService.add(new AccountDetail());
         appUser.setAccountDetail(add);
         ApplicationToken applicationToken = applicationtokenService.add(new ApplicationToken());
         appUser.setApplicationToken(applicationToken);
@@ -72,7 +72,7 @@ public class AppUserManager implements AppUserService {
                     appUser.getApplicationToken().getTokenQuantity() + " gereken token " + (-tokenQuatity) );
         }
 
-        AccountDetail accountDetail = accaountDetailService.buyPremium(accountDetail1);
+        AccountDetail accountDetail = accountDetailService.buyPremium(accountDetail1);
         BuyPremiumResponse premiumResponse = BuyPremiumResponse.fromDto(accountDetail);
         premiumResponse.setTokenAmount(tokenQuatity);
         return premiumResponse;
