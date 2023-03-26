@@ -1,5 +1,6 @@
 package com.ekip.pchat.service.concrete;
 
+import com.ekip.pchat.api.dto.accaountDetail.BuyPremiumResponse;
 import com.ekip.pchat.api.dto.userdto.AppUserAddRequest;
 import com.ekip.pchat.api.dto.userdto.BuyPremiumRequest;
 import com.ekip.pchat.dao.AppUserRepository;
@@ -53,9 +54,9 @@ public class AppUserManager implements AppUserService {
         return appUserRepository.findById(userId).orElseThrow(() -> new EntityNotFountException("User not found with " + userId + " id. "));
     }
 
-    //TODO DONUS TIPINE KALAN TOKE MIKTARI EKLENCEK
+
     @Override
-    public AccountDetail buyPremium(BuyPremiumRequest buyPremiumRequest, Long userId) {
+    public BuyPremiumResponse buyPremium(BuyPremiumRequest buyPremiumRequest, Long userId) {
         AppUser appUser = getById(userId);
         AccountDetail accountDetail1 = appUser.getAccountDetail();
         accountDetail1.setPremiumStartDate(LocalDateTime.now());
@@ -71,7 +72,10 @@ public class AppUserManager implements AppUserService {
                     appUser.getApplicationToken().getTokenQuantity() + " gereken token " + (-tokenQuatity) );
         }
 
-            return accaountDetailService.buyPremium(accountDetail1);
+        AccountDetail accountDetail = accaountDetailService.buyPremium(accountDetail1);
+        BuyPremiumResponse premiumResponse = BuyPremiumResponse.fromDto(accountDetail);
+        premiumResponse.setTokenAmount(tokenQuatity);
+        return premiumResponse;
     }
 
 

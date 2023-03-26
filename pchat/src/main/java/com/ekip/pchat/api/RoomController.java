@@ -37,5 +37,4 @@ public class RoomController {
 
         return new ResponseEntity(new SuccessDataResponse("room created",this.service.createRoom(room)), HttpStatus.CREATED);
     }
-
 }
